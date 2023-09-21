@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class ItemEquip : MonoBehaviour
 {
-    public bool isEquipped = false; // 장착 여부
+    private bool isEquipped = false; // 아이템 장착 상태
 
-    public void Equip()
+    public bool IsEquipped
     {
-        isEquipped = true;
+        get { return isEquipped; }
     }
 
-    public void Unequip()
+    // 아이템 장착 상태 설정
+    public void SetEquipped(bool equipped)
     {
-        isEquipped = false;
+        isEquipped = equipped;
     }
 }
