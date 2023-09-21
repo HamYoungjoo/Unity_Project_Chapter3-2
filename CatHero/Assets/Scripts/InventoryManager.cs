@@ -3,24 +3,28 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    public Transform slotParent; 
-    public GameObject ItemSlotBGPrefab; 
-    public GameObject IconPrefab;
-    public Sprite[] itemSprites; 
+    public Transform slotParent; // 슬롯 부모 객체
+    public GameObject ItemSlotPrefab; // 아이템 슬롯 프리팹
+    public Sprite[] itemSprites; // 아이템 스프라이트 배열
 
     private void Start()
     {
-        for (int j = 0; j < 9;j++)
+        // 아이템 슬롯 배치
+        for (int i = 0; i < 9; i++)
         {
-            GameObject itemSlotBG = Instantiate(ItemSlotBGPrefab, slotParent);
+            GameObject itemSlot = Instantiate(ItemSlotPrefab, slotParent);
+            ItemSlot slotScript = itemSlot.GetComponent<ItemSlot>();
 
-        }
-
-        for (int i = 0; i < itemSprites.Length; i++)
-        {
-            GameObject IconImg = Instantiate(IconPrefab, slotParent);
-            Image slotImage = IconImg.GetComponentInChildren<Image>(); // 슬롯 하위의 Image 컴포넌트를 찾음
-            slotImage.sprite = itemSprites[i]; // 이미지 설정
+            if (i < itemSprites.Length)
+            {
+                // 아이콘 이미지 설정
+                slotScript.SetItemIcon(itemSprites[i]);
+            }
+            else
+            {
+                // 아이템이 없으면 아이콘 이미지를 비활성화
+                slotScript.DisableIcon();
+            }
         }
     }
 }

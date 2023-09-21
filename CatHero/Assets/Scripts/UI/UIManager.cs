@@ -14,9 +14,14 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //BackButton.gameObject.SetActive(false);
-        //StatusPanel.SetActive(false);
-        //InventoryPanel.SetActive(false);
+        StatusPanel.SetActive(false);
+        InventoryPanel.SetActive(false);
+        BackButton.gameObject.SetActive(false);
+
+        StatusButton.gameObject.SetActive(true);
+        StatusButton.interactable = true;
+        InventoryButton.gameObject.SetActive(true);
+        InventoryButton.interactable = true;
     }
 
     public void ShowCharacterInfo()
